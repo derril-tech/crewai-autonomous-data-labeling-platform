@@ -1,7 +1,6 @@
 # 🚀 Autonomous Data Labeling Platform
 **AI-Powered Human-in-the-Loop Labeling with Active Learning**
 
-🌐 **[View Live Application](https://crewai-autonomous-data-labeling-pla.vercel.app)**
 
 > **Accelerate your ML data pipeline. Let AI pre-label text, images, and audio with confidence scores, then verify in a keyboard-first workspace designed for speed. Continuous improvement through active learning ensures your models get better over time.** ⚡
 
@@ -302,9 +301,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-
-
-[Live Demo](https://crewai-autonomous-data-labeling-pla.vercel.app) 
 
 Made with ❤️ and ☕ by [Derril Filemon](https://github.com/derril-tech)
 
