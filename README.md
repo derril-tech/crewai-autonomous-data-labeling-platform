@@ -32,10 +32,10 @@ All orchestrated through a modern, responsive interface that works seamlessly on
 ## 🎯 Core Features
 
 ### 🤖 **AI-Powered Pre-labeling**
-- **OpenAI Integration** — GPT-4.1-mini with structured JSON outputs for reliable parsing
+- **OpenAI Integration** — GPT-4o-mini for pre-labeling/hints, GPT-4.1-mini for chat assistant, Whisper API for audio transcription
 - **Confidence Scoring** — 0.0-1.0 scale with detailed thresholds for quality assessment
 - **Multi-Modality Support** — Text classification, image bounding boxes, audio segments
-- **CrewAI Orchestration** — Multi-agent workflow for pre-labeling, QA, and guidance
+- **CrewAI Framework** — Available for multi-agent workflows (adapter exists, OpenAI direct calls used in production)
 - **Rate Limiting & Caching** — Efficient API usage with intelligent result caching
 
 ### 📊 **Data Quality & Analytics**
@@ -97,8 +97,8 @@ All orchestrated through a modern, responsive interface that works seamlessly on
 |------------|---------|
 | **FastAPI** | High-performance async Python API |
 | **Pydantic v2** | Data validation and serialization |
-| **OpenAI SDK** | GPT-4.1-mini with structured outputs |
-| **CrewAI** | Multi-agent orchestration for labeling workflows |
+| **OpenAI SDK** | GPT-4o-mini for pre-labeling/hints, GPT-4.1-mini for chat, Whisper for audio |
+| **CrewAI** | Multi-agent framework (adapter available, OpenAI direct calls used in production) |
 | **Uvicorn** | ASGI server with async support |
 
 ### **Data & Infrastructure** 💾
@@ -117,63 +117,6 @@ All orchestrated through a modern, responsive interface that works seamlessly on
 
 ---
 
-## 🔄 How It Works
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    DATA INGESTION                            │
-│         Upload text/images/audio → Create dataset            │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 SCHEMA DEFINITION                            │
-│         Define labelset (classes, modality, config)         │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│              AI PRE-LABELING (OpenAI + CrewAI)              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │   Prelabel   │  │     QA       │  │  Guidance    │      │
-│  │   Agent      │──│   Agent      │──│   Agent      │      │
-│  │  (OpenAI)    │  │  (Conflict)  │  │  (Hints)     │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│         │                  │                  │            │
-│         └──────────────────┴──────────────────┘            │
-│                    Draft Annotations                        │
-│              (with confidence scores)                       │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│            HUMAN VERIFICATION WORKSPACE                      │
-│  • Keyboard-first navigation (J/K/A/S)                       │
-│  • AI hints panel with rationale                             │
-│  • Bulk operations for efficiency                            │
-│  • Active learning queue prioritization                      │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│              QUALITY ASSURANCE & ANALYTICS                  │
-│  • Conflict detection and flagging                           │
-│  • Quality metrics (verified rate, confidence, drift)        │
-│  • Real-time dashboard with trends                           │
-│  • Activity timeline and audit trail                         │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    EXPORT & DEPLOY                           │
-│  • JSONL, COCO-lite, CSV formats                             │
-│  • Verified annotations ready for training                   │
-│  • Active learning feedback loop                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
 ## 📖 User Guide
 
 ### Getting Started
@@ -184,6 +127,18 @@ All orchestrated through a modern, responsive interface that works seamlessly on
 4. **Run Pre-labeling** — AI generates draft annotations with confidence scores
 5. **Verify Labels** — Use keyboard-first workspace to review and approve
 6. **Export** — Download verified annotations in JSONL format
+
+### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `J` | Next item |
+| `K` | Previous item |
+| `A` | Approve (mark verified) |
+| `R` | Reject (revert to draft) |
+| `S` | Save draft |
+| `H` | Toggle hints panel |
+| `?` | Show help modal |
 
 ### Understanding Quality Metrics
 
@@ -297,6 +252,18 @@ This platform demonstrates production-grade engineering across multiple domains:
 
 ---
 
+## 📚 Documentation
+
+- **Architecture**: `ARCH.md` — System design and API contracts
+- **Development Plan**: `PLAN.md` — Milestones and roadmap
+- **Project Brief**: `PROJECT_BRIEF.md` — Product overview
+- **Developer Guide**: `DEVELOPER.md` — Setup and conventions
+- **Deployment**: `DEPLOYMENT.md` — Railway and Vercel setup
+- **Storage Config**: `STORAGE_CONFIG.md` — File upload configuration
+- **OpenAI Prompts**: `OPENAI_PROMPT_IMPROVEMENTS.md` — Prompt engineering details
+
+---
+
 ## 👨‍💻 Creator
 
 **Derril Filemon**
@@ -316,7 +283,7 @@ This project showcases expertise in:
 ## 🙏 Acknowledgments
 
 - **[OpenAI](https://openai.com/)** — GPT-4.1-mini API with structured outputs
-- **[CrewAI](https://www.crewai.com/)** — Multi-agent orchestration framework
+- **[CrewAI](https://www.crewai.com/)** — Multi-agent orchestration framework (adapter available)
 - **[Supabase](https://supabase.com/)** — PostgreSQL, Storage, and pgvector
 - **[Upstash](https://upstash.com/)** — Serverless Redis
 - **[Railway](https://railway.app/)** — Backend deployment platform
@@ -334,6 +301,8 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 <div align="center">
+
+
 
 [Live Demo](https://crewai-autonomous-data-labeling-pla.vercel.app) 
 
