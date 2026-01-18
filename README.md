@@ -302,8 +302,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 <div align="center">
 
 
-Made with ❤️ and ☕ by [Derril Filemon](https://github.com/derril-tech)
-
 **AI Engineer & Fullstack Developer** • Göteborg, Sweden
 
 </div>
